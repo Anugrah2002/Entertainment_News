@@ -5,7 +5,7 @@ from PIL import Image
 from django.conf import settings
 import urllib.request
 from gtts import gTTS,tts
-import shutilz
+import shutil
 from moviepy.editor import AudioFileClip, VideoFileClip,CompositeAudioClip
 import settings
 
