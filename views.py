@@ -21,7 +21,7 @@ def checktime():
     datime=datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M:%S")
     print(datime)
     dateee=datetime.datetime.strptime(datime,"%Y-%m-%d %H:%M:%S")
-    if nextran < dateee:
+    if (nextran < dateee) or True:
        print("We will post video")
        requestVideo()
     else:
@@ -40,6 +40,7 @@ def requestVideo():
         title=(r.json()['title'])
         YTtitle=(r.json()['Ytitle'])
         content=(r.json()['content'])
+        print(content)
         summary=(r.json()['summary'])
         if title == 0 or title is None or content is None or content == '':
             print("Content or title is either blank or incorrect")
@@ -47,7 +48,7 @@ def requestVideo():
         
 
         newYTtitle = YTtitle
-        p = makeVideo(newYTtitle+' hd',content)
+#         p = makeVideo(newYTtitle+' hd',content)
         print('2')
 
         if p =='GTTS ERR':
