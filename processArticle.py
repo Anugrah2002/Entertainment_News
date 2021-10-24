@@ -26,6 +26,7 @@ def findArticle():
         web_page = getArticleWebpage(url)
         
         content = scrapArticle(web_page)
+        print(content)
         YTtitle = getYoutubeTitle(url)
 
         return jsonFormat['title'], jsonFormat['description'], content, YTtitle
@@ -77,7 +78,7 @@ def getArticleWebpage(url):
 def scrapArticle(web_page):
     try:
         soup = BeautifulSoup(web_page, 'html.parser')
-        content =  soup.find("div", {"class" : "article-desc ul_styling"})
+        content =  soup.find("div", {"class" : "image-caption-text caption ul_styling"})
         contentn = content.find("div",{"style":"text-align: justify;"})
         if contentn is not None:
             content = contentn
