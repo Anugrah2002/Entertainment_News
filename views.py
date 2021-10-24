@@ -28,7 +28,15 @@ def checktime():
         print("We will wait for minutes since it is time error")
 
 
+def replaceConflictsWords(content):
+    #Replace Words which needs to be removed because of copyright or advertisement
 
+    content = content.replace('विज्ञापन','')
+    content = content.replace('\n','')
+
+    #All words replaced
+
+    return content
 
 def requestVideo():
     
@@ -40,6 +48,7 @@ def requestVideo():
         title=(r.json()['title'])
         YTtitle=(r.json()['Ytitle'])
         content=(r.json()['content'])
+        content = replaceConflictsWords(content)
         print(content)
         summary=(r.json()['summary'])
         if title == 0 or title is None or content is None or content == '':
@@ -65,10 +74,10 @@ def requestVideo():
 
         print(YTtitle)
 
-        command = 'python ./bott/uploadToYT.py --file="'+str(p)+'" --title="'+YTtitle+'" --description="'+(summary+'\n'+credit)+'" --keywords="'+keywords+',hour news,news" --category="24" --privacyStatus="public" --noauth_local_webserver ' 
+        #command = 'python ./bott/uploadToYT.py --file="'+str(p)+'" --title="'+YTtitle+'" --description="'+(summary+'\n'+credit)+'" --keywords="'+keywords+',hour news,news" --category="24" --privacyStatus="public" --noauth_local_webserver ' 
         uploadvideotoheroku(p,YTtitle)
         
-        os.system(command) #comment this to stop uploading to youtube
+        #os.system(command) #comment this to stop uploading to youtube
         # shutil.rmtree(os.path.join(settings.BASE_DIR, r"dataset")) # comment this to stop removing the file from system
         print('Success')
 
