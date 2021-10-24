@@ -5,7 +5,7 @@ from PIL import Image
 from django.conf import settings
 import urllib.request
 from gtts import gTTS,tts
-import shutil
+import shutilz
 from moviepy.editor import AudioFileClip, VideoFileClip,CompositeAudioClip
 import settings
 
@@ -17,7 +17,7 @@ def makeAudio(name,content):
     try:
         try:
             os.chdir(os.path.join(settings.BASE_DIR, r"dataset/"+name))
-            ttsG = gTTS(content, lang='hi')
+            ttsG = gTTS(content,lang='hi')
             ttsG.save('audio.mp3')
         except tts.gTTSError as e:
             print(e)
