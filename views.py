@@ -30,13 +30,16 @@ def checktime():
 
 def replaceConflictsWords(content):
     #Replace Words which needs to be removed because of copyright or advertisement
-
-    content = content.replace('विज्ञापन','')
-    content = content.replace('\n','')
+    if (content != ''):
+        content = content.replace('विज्ञापन','')
+        content = content.replace('\n','')
+        return content
+    else:
+        return content
 
     #All words replaced
-
-    return content
+    
+   
 
 def requestVideo():
     
